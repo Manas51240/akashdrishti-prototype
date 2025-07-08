@@ -20,8 +20,8 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 
 ## 📸 Demo
 
-🔗 Live Site: (https://akashdrishti-prototype.onrender.com)  
-📦 GitHub Repo: (https://github.com/Manas51240/akashdrishti-prototype)
+🔗 **Live Site:** [https://akashdrishti-prototype.onrender.com](https://akashdrishti-prototype.onrender.com)  
+📦 **GitHub Repo:** [https://github.com/Manas51240/akashdrishti-prototype](https://github.com/Manas51240/akashdrishti-prototype)
 
 ---
 
@@ -48,16 +48,6 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 
 ---
 
-## 🔧 Setup Instructions
-
-bash
-git clone https://github.com/Manas51240/akashdrishti.git
-cd akashdrishti
-pip install -r requirements.txt
-python app.py
-
----
-
 👨‍💻 Authors & Contributors
 Team: AkashDrishti – Bharatiya Antariksh Hackathon 2025
 
@@ -71,5 +61,10 @@ Team: AkashDrishti – Bharatiya Antariksh Hackathon 2025
 
 ---
 
-📜 License
-This project is licensed under the MIT License.
+## 🔧 Setup Instructions
+
+```bash
+git clone https://github.com/Manas51240/akashdrishti-prototype.git
+cd akashdrishti-prototype
+pip install -r requirements.txt
+python app.py
