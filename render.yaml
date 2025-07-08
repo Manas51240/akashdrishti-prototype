@@ -1,0 +1,7 @@
+# render.yaml
+services:
+  - type: web
+    name: akashdrishti-app
+    env: python
+    buildCommand: ""
+    startCommand: "python run.py"
