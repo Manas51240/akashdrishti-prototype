@@ -1,0 +1,90 @@
+<!-- templates/aoi_map.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select AOI</title>
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.aoi.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
+  <style>
+    #map { height: 70vh; width: 100%; }
+    body { margin: 0; font-family: sans-serif; background: #0f1e2e; color: white; }
+    .form-container { padding: 20px; }
+    label, input { display: block; margin: 10px 0; }
+    button { padding: 10px 20px; background-color: #4ade80; border: none; color: #000; border-radius: 6px; }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Step 1: Draw Area of Interest (AOI)</h2>
+
+    <div id="map"></div>
+
+    <form action="/process-aoi" method="POST">
+      <!-- Hidden AOI GeoJSON field -->
+      <input type="hidden" id="aoi_geojson" name="aoi_geojson">
+
+      <!-- Date Range Inputs -->
+      <label for="start_date">Start Date:</label>
+      <input type="date" name="start_date" required>
+
+      <label for="end_date">End Date:</label>
+      <input type="date" name="end_date" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Leaflet JS + Draw -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+  <script>
+    const map = L.map('map').setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(map);
+
+    const drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    const drawControl = new L.Control.Draw({
+      draw: {
+        marker: false,
+        circle: false,
+        polyline: false,
+        circlemarker: false,
+        rectangle: {
+          shapeOptions: {
+            color: "#4ADE80"
+          }
+        }
+      },
+      edit: {
+        featureGroup: drawnItems
+      }
+    });
+    map.addControl(drawControl);
+
+    map.on(L.Draw.Event.CREATED, function (event) {
+      drawnItems.clearLayers();
+      const layer = event.layer;
+      drawnItems.addLayer(layer);
+
+      // Convert to GeoJSON string
+      const geojson = JSON.stringify(layer.toGeoJSON());
+      document.getElementById('aoi_geojson').value = geojson;
+
+      console.log("✅ AOI GeoJSON:", geojson);
+    });
+  </script>
+
+</body>
+</html>

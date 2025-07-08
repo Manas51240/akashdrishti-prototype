@@ -1,0 +1,46 @@
+<!-- templates/home.html -->
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-2xl font-semibold text-white mb-4">Select Area of Interest & Date Range</h2>
+
+  <form method="POST" action="/process-aoi" class="bg-[#1e2c3a] p-6 rounded-lg shadow-md">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Top-left coordinate -->
+      <div>
+        <label class="text-white block mb-2">Latitude (Top-Left)</label>
+        <input type="text" name="lat1" required class="w-full p-2 rounded bg-[#2b3f54] text-white" placeholder="e.g. 34.56">
+      </div>
+      <div>
+        <label class="text-white block mb-2">Longitude (Top-Left)</label>
+        <input type="text" name="lon1" required class="w-full p-2 rounded bg-[#2b3f54] text-white" placeholder="e.g. -118.24">
+      </div>
+
+      <!-- Bottom-right coordinate -->
+      <div>
+        <label class="text-white block mb-2">Latitude (Bottom-Right)</label>
+        <input type="text" name="lat2" required class="w-full p-2 rounded bg-[#2b3f54] text-white" placeholder="e.g. 34.50">
+      </div>
+      <div>
+        <label class="text-white block mb-2">Longitude (Bottom-Right)</label>
+        <input type="text" name="lon2" required class="w-full p-2 rounded bg-[#2b3f54] text-white" placeholder="e.g. -118.20">
+      </div>
+
+      <!-- Date inputs -->
+      <div>
+        <label class="text-white block mb-2">Start Date</label>
+        <input type="date" name="start_date" required class="w-full p-2 rounded bg-[#2b3f54] text-white">
+      </div>
+      <div>
+        <label class="text-white block mb-2">End Date</label>
+        <input type="date" name="end_date" required class="w-full p-2 rounded bg-[#2b3f54] text-white">
+      </div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <button type="submit" class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded">
+        Detect Changes
+      </button>
+    </div>
+
+  </form>
+</div>

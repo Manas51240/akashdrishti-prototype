@@ -1,0 +1,39 @@
+/* AOI Map Container */
+#map {
+  height: 500px;
+  width: 100%;
+  border: 2px solid #4ade80; /* green border */
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Form and Button Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #4ade80;
+  color: #000000;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #22c55e;
+}
+
+/* Optional: Page Heading */
+h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}

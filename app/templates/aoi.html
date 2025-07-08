@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select AOI - AkashDrishti</title>
+
+  <!-- Leaflet & Draw CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+
+  <!-- Your Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1a2b;
+      color: #ffffff;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    #map {
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 2px solid #4ade80;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, button {
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: none;
+    }
+    button {
+      background: #4ade80;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Select Area of Interest (AOI)</h1>
+
+  <!-- AOI + Date Input Form -->
+  <form action="/process-aoi" method="POST" id="aoi-form">
+    <!-- Date Range -->
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" name="start_date" required>
+
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" name="end_date" required>
+
+    <!-- AOI GeoJSON -->
+    <input type="hidden" name="aoi_geojson" id="aoi-geojson">
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <button type="submit">Detect Changes</button>
+  </form>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([20.5937, 78.9629], 5); // India center
+
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+    }).addTo(map);
+
+    // Feature group to hold AOI shape
+    const drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    // Draw control settings
+    const drawControl = new L.Control.Draw({
+      edit: {
+        featureGroup: drawnItems,
+      },
+      draw: {
+        polygon: true,
+        rectangle: true,
+        circle: false,
+        marker: false,
+        polyline: false
+      }
+    });
+    map.addControl(drawControl);
+
+    // On draw event
+    map.on(L.Draw.Event.CREATED, function (event) {
+      const layer = event.layer;
+      drawnItems.clearLayers();
+      drawnItems.addLayer(layer);
+
+      const geojson = layer.toGeoJSON();
+      document.getElementById('aoi-geojson').value = JSON.stringify(geojson);
+
+      alert("✅ AOI selected. Now choose the date range and click Submit.");
+    });
+
+    // Prevent form submission without AOI
+    document.getElementById("aoi-form").addEventListener("submit", function (e) {
+      const aoiValue = document.getElementById("aoi-geojson").value;
+      if (!aoiValue) {
+        e.preventDefault();
+        alert("⚠️ Please draw an AOI on the map before submitting.");
+      }
+    });
+
+    // Optional: Set default date range (last 7 days)
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('end-date').value = today;
+
+    const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    document.getElementById('start-date').value = lastWeek;
+  </script>
+
+</body>
+</html>
