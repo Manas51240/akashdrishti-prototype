@@ -20,7 +20,7 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 
 ## 📸 Demo
 
-🔗 Live Site: [https://akashdrishti.onrender.com](https://akashdrishti.onrender.com)  
+🔗 Live Site: [https://akashdrishti-prototype.onrender.com](https://akashdrishti-prototype.onrender.com)  
 📦 GitHub Repo: [GitHub](https://github.com/your-username/akashdrishti)
 
 ---
