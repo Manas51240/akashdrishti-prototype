@@ -1,7 +1,7 @@
 # 🌍 AkashDrishti – Satellite Change Detection & Alert System
 
 > Robust Change Detection, Monitoring, and Alert System on User-Defined AOI Using Multi-Temporal Satellite Imagery  
-> 🚀 Built for ISRO Hackathon 2025 | Team: SkyVision
+> 🚀 Built for ISRO Hackathon 2025 | Team: AkashDrishti
 
 ---
 
@@ -51,7 +51,7 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 ## 🔧 Setup Instructions
 
 bash
-git clone https://github.com/your-username/akashdrishti.git
+git clone https://github.com/Manas51240/akashdrishti.git
 cd akashdrishti
 pip install -r requirements.txt
 python app.py
