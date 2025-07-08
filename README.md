@@ -21,7 +21,7 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 ## 📸 Demo
 
 🔗 Live Site: [https://akashdrishti-prototype.onrender.com](https://akashdrishti-prototype.onrender.com)  
-📦 GitHub Repo: [GitHub](https://github.com/your-username/akashdrishti)
+📦 GitHub Repo: [GitHub](https://github.com/Manas51240/akashdrishti-prototype))
 
 ---
 
