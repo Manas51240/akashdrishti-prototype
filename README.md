@@ -47,3 +47,29 @@ Built with **Python + Flask + Leaflet + OpenCV + Firebase**.
 | Hosting    | Render.com (Flask App)           |
 
 ---
+
+## 🔧 Setup Instructions
+
+bash
+git clone https://github.com/your-username/akashdrishti.git
+cd akashdrishti
+pip install -r requirements.txt
+python app.py
+
+---
+
+👨‍💻 Authors & Contributors
+Team: AkashDrishti – Bharatiya Antariksh Hackathon 2025
+
+👨‍💻 Manas Deshmukh – Python, Flask, Firebase Integration
+
+🧠 Samarth Yete – Database Management, AI Alert System
+
+🎨 Rutuja Jadhav – Frontend Design, UI/UX
+
+🖌️ Shweta Kharat – Graphics & Visual Design
+
+---
+
+📜 License
+This project is licensed under the MIT License.
